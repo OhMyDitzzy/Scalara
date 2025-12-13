@@ -1,14 +1,55 @@
 # IDE Cache
 .kls
-.gradle
-
 .acside/*
 
-# Build
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Keystore files
+*.keystore
+*.jks
+*.p12
+keystore.properties
+release.keystore
+debug.keystore
+
+# Keystore base64
+keystore.txt
+*.keystore.txt
+
+# Local configuration files
 local.properties
+
+# Built application files
+*.apk
+*.aab
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+release/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio
+.idea/
 *.iml
+.DS_Store
+captures/
+.externalNativeBuild
+.cxx/
+
+# Keystore passwords
+signing.properties
+keystore.properties

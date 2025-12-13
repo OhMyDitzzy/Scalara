@@ -1,6 +1,8 @@
-plugins {
-    alias(libs.plugins.android.application)
-}
+apply plugin: 'com.android.application'
+
+def isRunningOnCI = System.getenv("CI") == "true"
+def versionNameFromCI = System.getenv("VERSION_NAME") ?: "dev"
+def versionCodeFromCI = System.getenv("VERSION_CODE")?.toInteger() ?: 1
 
 android {
     namespace 'com.ditzdev.scalara'
@@ -10,14 +12,44 @@ android {
         applicationId 'com.ditzdev.scalara'
         minSdk 26
         targetSdk 35
-        versionCode 99
-        versionName '1.0.3-hotfix-java'
+        versionCode versionCodeFromCI
+        versionName versionNameFromCI
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
+    signingConfigs {
+        release {
+            if (isRunningOnCI) {
+                storeFile file(System.getenv("KEYSTORE_PATH") ?: "release.keystore")
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyAlias System.getenv("KEY_ALIAS")
+                keyPassword System.getenv("KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+            debuggable true
+            minifyEnabled false
+        }
+        
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (isRunningOnCI) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 
     compileOptions {
@@ -27,8 +59,8 @@ android {
 }
 
 dependencies {
-    implementation  libs.androidx.core  
-    implementation  libs.androidx.appcompat  
-    implementation  libs.material  
-    implementation  libs.androidx.constraintlayout  
+    implementation libs.androidx.core
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
 }
