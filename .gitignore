@@ -1,0 +1,14 @@
+# IDE Cache
+.kls
+.gradle
+
+.acside/*
+
+# Build
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+*.iml

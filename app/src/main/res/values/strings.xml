@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Scalara</string>
+    <string name="scalara_before_pixelify">Scalara (Before Pixelify)</string>
+    <string name="welcome_text">Set your screen resolution to whatever you want!</string>
+</resources>
