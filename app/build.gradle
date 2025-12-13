@@ -1,4 +1,7 @@
-apply plugin: 'com.android.application'
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.oss.license.plugin)
+}
 
 def isRunningOnCI = System.getenv("CI") == "true"
 def versionNameFromCI = System.getenv("VERSION_NAME") ?: "dev"
@@ -31,7 +34,6 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix '.debug'
             versionNameSuffix '-debug'
             debuggable true
             minifyEnabled false
@@ -63,4 +65,7 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.material
     implementation libs.androidx.constraintlayout
+    implementation libs.shizuku.api
+    implementation libs.shizuku.provider
+    implementation libs.oss.license
 }

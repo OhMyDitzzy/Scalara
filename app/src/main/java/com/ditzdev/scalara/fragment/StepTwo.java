@@ -4,45 +4,33 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.ditzdev.scalara.R;
+import com.ditzdev.scalara.databinding.FragmentStep2Binding;
 
 public class StepTwo extends Fragment {
 
-    private ImageView ivIcon;
-    private TextView tvTitle;
-    private TextView tvDescription;
-
+    private FragmentStep2Binding binding;
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, 
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_step2, container, false);
+        binding = FragmentStep2Binding.inflate(inflater, container, false);
         
-        initViews(view);
-        setupContent();
-        
-        return view;
+        return binding.getRoot();
     }
 
-    private void initViews(View view) {
-        ivIcon = view.findViewById(R.id.ivIcon);
-        tvTitle = view.findViewById(R.id.tvTitle);
-        tvDescription = view.findViewById(R.id.tvDescription);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // TODO
     }
 
-    private void setupContent() {
-        // Di sini bisa custom logic untuk Setup 2
-        // Misalnya validasi form, load preferences, dll
-        
-        // Contoh: tambahkan interactive elements
-        // Button btnAction = view.findViewById(R.id.btnAction);
-        // btnAction.setOnClickListener(v -> {
-        //     // Handle action
-        // });
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

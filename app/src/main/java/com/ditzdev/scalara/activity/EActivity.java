@@ -61,4 +61,10 @@ public class EActivity extends AppCompatActivity {
             err.printStackTrace();
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
 }

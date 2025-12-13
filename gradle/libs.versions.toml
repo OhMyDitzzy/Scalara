@@ -4,12 +4,19 @@ core = "1.17.0"
 appcompat = "1.7.1"
 material = "1.14.0-alpha07"
 constraintlayout = "2.2.1"
+shizuku = "13.1.5"
+oss = "0.10.7"
+ossLibs = "17.0.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+oss-license-plugin = { id = "com.google.android.gms.oss-licenses-plugin", version.ref = "oss" }
 
 [libraries]
 androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+shizuku-api = { group = "dev.rikka.shizuku", name = "api", version.ref = "shizuku" }
+shizuku-provider = { group = "dev.rikka.shizuku", name = "provider", version.ref = "shizuku" }
+oss-license = { group = "com.google.android.gms", name = "play-services-oss-licenses", version.ref = "ossLibs" }

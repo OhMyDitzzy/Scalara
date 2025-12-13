@@ -2,4 +2,11 @@
     <string name="app_name">Scalara</string>
     <string name="scalara_before_pixelify">Scalara (Before Pixelify)</string>
     <string name="welcome_text">Set your screen resolution to whatever you want!</string>
+    <string name="lets_start">Let\'s start!</string>
+    <string name="scalara_permission_text">Scalara requires some preparation. Please follow the instructions below.</string>
+    <string name="using_adb_bridge">Using ADB Bridge</string>
+    <string name="using_the_method_of_granting_s">Using the method of granting special permissions via ADB (Android Debugging Bridge)</string>
+    <string name="using_shizuku">Using Shizuku</string>
+    <string name="shizuku_method">This is the easiest way, Just get permission from Shizuku.</string>
+    <string name="done_setup_text">You\'re set! Let\'s move on to the main part.</string>
 </resources>

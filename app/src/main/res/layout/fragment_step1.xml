@@ -18,6 +18,7 @@
         android:text="@string/scalara_before_pixelify"
         android:textSize="28sp"
         android:gravity="center"
+        android:fontFamily="@font/poppins_bold"
         android:layout_marginBottom="16dp" />
     <TextView
         android:id="@+id/tvDescription"
@@ -26,5 +27,6 @@
         android:text="@string/welcome_text"
         android:textSize="16sp"
         android:gravity="center"
+        android:fontFamily="@font/poppins_medium"
         android:lineSpacingExtra="4dp" />
 </LinearLayout>
