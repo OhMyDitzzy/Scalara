@@ -24,7 +24,6 @@ public class StepOne extends Fragment {
         View view = inflater.inflate(R.layout.fragment_step1, container, false);
         
         initViews(view);
-        setupContent();
         
         return view;
     }
@@ -33,17 +32,5 @@ public class StepOne extends Fragment {
         ivIcon = view.findViewById(R.id.ivIcon);
         tvTitle = view.findViewById(R.id.tvTitle);
         tvDescription = view.findViewById(R.id.tvDescription);
-    }
-
-    private void setupContent() {
-        // Di sini bisa custom logic untuk Setup 1
-        // Misalnya load data, animasi, dll
-        
-        // Contoh: ubah icon programmatically
-        // ivIcon.setImageResource(R.drawable.custom_icon);
-        
-        // Contoh: ubah text programmatically
-        // tvTitle.setText("Custom Setup 1 Title");
-        // tvDescription.setText("Custom description");
     }
 }
