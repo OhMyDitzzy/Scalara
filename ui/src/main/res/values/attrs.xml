@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BashCodeBlockView">
+        <attr name="codeBackgroundColor" format="color" />
+        <attr name="lineNumberColor" format="color" />
+        <attr name="lineNumberBackgroundColor" format="color" />
+        <attr name="codeFontSize" format="dimension" />
+        <attr name="showLineNumbers" format="boolean" />
+        <attr name="showCopyButton" format="boolean" />
+        <attr name="enableLongPressSelect" format="boolean" />
+    </declare-styleable>
+</resources>

@@ -1,22 +1,30 @@
 [versions]
 agp = "8.13.0"
-core = "1.17.0"
+kotlin = "2.1.0"
+coreKtx = "1.17.0"
 appcompat = "1.7.1"
 material = "1.14.0-alpha07"
 constraintlayout = "2.2.1"
 shizuku = "13.1.5"
-oss = "0.10.7"
-ossLibs = "17.0.0"
-
-[plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-oss-license-plugin = { id = "com.google.android.gms.oss-licenses-plugin", version.ref = "oss" }
+ossLicense = "17.0.0"
+annotation = "1.7.0"
+detekt = "1.23.6"
+dependencyAnalysis = "3.5.1"
 
 [libraries]
-androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
+androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 shizuku-api = { group = "dev.rikka.shizuku", name = "api", version.ref = "shizuku" }
 shizuku-provider = { group = "dev.rikka.shizuku", name = "provider", version.ref = "shizuku" }
-oss-license = { group = "com.google.android.gms", name = "play-services-oss-licenses", version.ref = "ossLibs" }
+oss-license = { group = "com.google.android.gms", name = "play-services-oss-licenses", version.ref = "ossLicense" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+oss-license-plugin = { id = "com.google.android.gms.oss-licenses-plugin", version = "0.10.7" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }

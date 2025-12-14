@@ -1,5 +1,6 @@
 # IDE Cache
 .kls
+/.kotlin/*
 .acside/*
 
 # Keystore files

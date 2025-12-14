@@ -1,5 +1,39 @@
 plugins {
     alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.dependency.analysis) apply false
+}
+
+subprojects {
+    apply plugin: "com.autonomousapps.dependency-analysis"
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    parallel = true
+    autoCorrect = false
+}
+
+tasks.register("checkFast") {
+    group = "verification"
+    description = "Check dependency, kotlin, lint WITHOUT build APK"
+
+    dependsOn(
+        ":app:buildHealth",
+        ":ui:buildHealth",
+        "detekt",
+        ":app:lintDebug"
+    )
+}
+
+tasks.register("checkQuick") {
+    group = "verification"
+    description = "Quick check - detekt only"
+    
+    dependsOn("detekt")
 }
 
 tasks.register('clean', Delete) {
