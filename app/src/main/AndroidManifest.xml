@@ -9,6 +9,7 @@
         tools:ignore="ProtectedPermissions" />
 
     <application 
+        android:name=".app.ScalaraApplication"
         android:allowBackup="true" 
         android:icon="@mipmap/ic_launcher" 
         android:roundIcon="@mipmap/ic_launcher" 
@@ -25,5 +26,11 @@
                     android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+          android:name=".app.CrashReportActivity"
+          android:process=":crash"
+          android:taskAffinity="${applicationId}.crash"
+          android:excludeFromRecents="true"
+          android:exported="false" />
     </application>
 </manifest>

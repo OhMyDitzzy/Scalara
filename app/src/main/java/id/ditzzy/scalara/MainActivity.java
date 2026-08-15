@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         // set content view to binding's root
         setContentView(binding.getRoot());
+        throw new RuntimeException("Scalara test crash — verifying CrashHandler captures uncaught exceptions");
     }
     
     @Override

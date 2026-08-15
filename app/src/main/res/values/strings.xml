@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Scalara</string>
+
+    <string name="crash_dialog_title">Scalara has stopped</string>
+    <string name="crash_dialog_message">The app ran into an unexpected error and needs to close. The log below may help explain what happened.</string>
+    <string name="crash_dialog_copy_log">Copy log</string>
+    <string name="crash_dialog_ok">OK</string>
+    <string name="crash_dialog_log_copied">Log copied to clipboard</string>
 </resources>
