@@ -1,0 +1,10 @@
+# Copy this file to "release.properties" (gitignored) and fill in your own
+# release keystore details for local release builds.
+#
+# In CI, these same values are instead supplied via environment variables:
+#   SIGNING_STORE_FILE, SIGNING_STORE_PASSWORD, SIGNING_KEY_ALIAS, SIGNING_KEY_PASSWORD
+# See .github/workflows/release.yml and CONTRIBUTING.md for details.
+storeFile=release.keystore
+storePassword=your-store-password
+keyAlias=your-key-alias
+keyPassword=your-key-password

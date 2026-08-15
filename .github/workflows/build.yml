@@ -1,0 +1,61 @@
+name: Build (manual)
+
+# Manually triggerable from the Actions tab. Useful for producing an
+# on-demand APK from any branch without needing a push or PR.
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: "Build variant to assemble"
+        required: true
+        default: debug
+        type: choice
+        options:
+          - debug
+          - release
+
+jobs:
+  build:
+    name: Assemble ${{ inputs.build_type }} APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so version-name derivation from git tags works
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Decode release keystore
+        if: inputs.build_type == 'release'
+        run: |
+          if [ -z "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" ]; then
+            echo "::warning::SIGNING_KEYSTORE_BASE64 secret is not set; release build will be unsigned."
+          else
+            echo "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" | base64 --decode > release.keystore
+          fi
+
+      - name: Assemble ${{ inputs.build_type }} APK
+        env:
+          SIGNING_STORE_FILE: release.keystore
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: ./gradlew assemble${{ inputs.build_type == 'release' && 'Release' || 'Debug' }} --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-${{ inputs.build_type }}-${{ github.run_number }}
+          path: app/build/outputs/apk/${{ inputs.build_type }}/*.apk
+          retention-days: 14
