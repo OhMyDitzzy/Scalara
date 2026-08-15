@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#ffffff</color>
-    <color name="transparent">#00000000</color>
     <color name="blue_theme_primary">#93CDF6</color>
     <color name="blue_theme_onPrimary">#00344C</color>
     <color name="blue_theme_primaryContainer">#004C6D</color>
