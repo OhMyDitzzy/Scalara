@@ -2,6 +2,11 @@ package id.ditzzy.scalara.app;
 
 import android.app.Application;
 import android.os.Build;
+import android.os.Process;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class ScalaraApplication extends Application {
 
@@ -10,7 +15,7 @@ public class ScalaraApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        
+
         if (isMainProcess()) {
             Thread.setDefaultUncaughtExceptionHandler(
                     new CrashHandler(getApplicationContext())
@@ -29,18 +34,38 @@ public class ScalaraApplication extends Application {
     }
 
     private boolean isMainProcess() {
+        String processName;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            return getPackageName().equals(getProcessName());
+            // Android 9+
+            processName = getProcessName();
+        } else {
+            // Android 7.0 - 8.1
+            processName = getProcessNameCompat();
         }
 
-        /*
-         * Android < 9.
-         *
-         * For modern projects, this section is usually not necessary,
-         * but we still provide it for security purposes..
-         */
-        return getPackageName().equals(
-                android.app.Application.getProcessName()
-        );
+        return getPackageName().equals(processName);
+    }
+
+    private String getProcessNameCompat() {
+        int pid = Process.myPid();
+
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader("/proc/" + pid + "/cmdline")
+        )) {
+            String processName = reader.readLine();
+
+            if (processName != null) {
+                return processName.trim();
+            }
+        } catch (IOException e) {
+            InternalLogger.e(
+                    TAG,
+                    "Failed to get process name",
+                    e
+            );
+        }
+
+        return null;
     }
 }
