@@ -117,4 +117,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.startup.runtime)
     implementation(libs.androidx.interpolator)
+    implementation(libs.androidx.splashscreen)
+    implementation(libs.shizuku.api)
+    implementation(libs.shizuku.provider)
 }

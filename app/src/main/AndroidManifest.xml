@@ -8,6 +8,13 @@
         android:name="android.permission.WRITE_SECURE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
+    <!--
+      Required for Shizuku's own permission-request flow to recognize this
+      app as a legitimate Shizuku client — separate from WRITE_SECURE_SETTINGS
+      itself, which is what Shizuku ultimately grants once the user approves.
+    -->
+    <uses-permission android:name="moe.shizuku.manager.permission.API" />
+
     <application 
         android:name=".app.ScalaraApplication"
         android:allowBackup="true" 
@@ -16,21 +23,50 @@
         android:label="@string/app_name" 
         android:supportsRtl="true" 
         android:theme="@style/Scalara.AppTheme">
-        <activity 
-            android:name="MainActivity" 
-            android:exported="true">
+
+        <activity
+            android:name=".setup.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Scalara.SplashTheme">
             <intent-filter>
-                <action 
+                <action
                     android:name="android.intent.action.MAIN" />
-                <category 
+                <category
                     android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".setup.DisclaimerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".setup.SetupActivity"
+            android:exported="false" />
+
+        <activity 
+            android:name="MainActivity" 
+            android:exported="false" />
+
         <activity
           android:name=".app.CrashReportActivity"
           android:process=":crash"
           android:taskAffinity="${applicationId}.crash"
           android:excludeFromRecents="true"
           android:exported="false" />
+
+        <!--
+          Lets this app forward Binder calls to the Shizuku service. The
+          INTERACT_ACROSS_USERS_FULL permission requirement on the provider
+          itself (not on this app) is what keeps other normal apps from
+          querying it — see the Shizuku-API integration guide.
+        -->
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:multiprocess="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
     </application>
 </manifest>

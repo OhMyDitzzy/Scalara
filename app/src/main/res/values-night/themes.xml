@@ -54,4 +54,13 @@
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
+    <style
+        name="Scalara.SplashTheme"
+        parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/blue_theme_surface</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/blue_theme_primaryContainer</item>
+        <item name="windowSplashScreenAnimationDuration">450</item>
+        <item name="postSplashScreenTheme">@style/Scalara.AppTheme</item>
+    </style>
 </resources>

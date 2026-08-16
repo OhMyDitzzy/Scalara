@@ -59,6 +59,15 @@
         <item name="cornerSize">50%</item>
     </style>
     <style
+        name="Scalara.SplashTheme"
+        parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/blue_theme_surface</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/blue_theme_primaryContainer</item>
+        <item name="windowSplashScreenAnimationDuration">450</item>
+        <item name="postSplashScreenTheme">@style/Scalara.AppTheme</item>
+    </style>
+    <style
         name="Scalara.CrashDialogTheme"
         parent="Scalara.AppTheme">
         <item name="android:windowIsTranslucent">true</item>
