@@ -15,6 +15,23 @@
     -->
     <uses-permission android:name="moe.shizuku.manager.permission.API" />
 
+    <!--
+      Needed for PreviewRevertService to run as a foreground service (API 28+
+      requires declaring a service type) and to post its countdown
+      notification (API 33+ requires runtime consent for notifications).
+    -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!--
+      Used only by AboutActivity, to fetch the live contributor list from
+      the GitHub API (avatars, names, contribution counts) and load the
+      avatar images themselves. No other part of the app makes network
+      requests.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application 
         android:name=".app.ScalaraApplication"
         android:allowBackup="true" 
@@ -49,6 +66,14 @@
             android:exported="false" />
 
         <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".about.AboutActivity"
+            android:exported="false" />
+
+        <activity
           android:name=".app.CrashReportActivity"
           android:process=":crash"
           android:taskAffinity="${applicationId}.crash"
@@ -68,5 +93,43 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+
+        <!--
+          Runs the "Try it out" preview countdown independent of
+          MainActivity's lifecycle. specialUse is the closest official
+          foreground-service type for "temporarily apply a system display
+          setting and guarantee it gets reverted" — none of the other
+          android:foregroundServiceType values (camera, location, media,
+          etc.) describe this. android:name pairs with the
+          FOREGROUND_SERVICE_SPECIAL_USE permission above.
+        -->
+        <service
+            android:name=".resolution.PreviewRevertService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Temporarily previews a display resolution/DPI change and guarantees it reverts to the device default." />
+        </service>
+        <service
+          android:name=".setup.MyUserService"
+          android:exported="false"
+          android:process=":privileged_service" />
+
+        <!--
+          Lets AppCompatDelegate.setApplicationLocales() (used by
+          LocaleUtils) persist the chosen in-app language on API 24-32,
+          where there is no platform-level per-app language storage to
+          delegate to. On API 33+ this service is unused; AppCompat defers
+          to the platform's own LocaleManager storage instead.
+        -->
+        <service
+          android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+          android:enabled="false"
+          android:exported="false">
+            <meta-data
+              android:name="autoStoreLocales"
+              android:value="true" />
+        </service>
     </application>
 </manifest>

@@ -4,9 +4,14 @@ import android.app.Application;
 import android.os.Build;
 import android.os.Process;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import id.ditzzy.scalara.settings.AppSettings;
+import id.ditzzy.scalara.settings.ThemeUtils;
 
 public class ScalaraApplication extends Application {
 
@@ -19,6 +24,16 @@ public class ScalaraApplication extends Application {
         if (isMainProcess()) {
             Thread.setDefaultUncaughtExceptionHandler(
                     new CrashHandler(getApplicationContext())
+            );
+
+            // Applied here, before any Activity inflates, so the very first
+            // frame already reflects the user's saved theme choice rather
+            // than briefly showing the system default and then switching.
+            // Locale (LocaleUtils) doesn't need the same treatment:
+            // AppCompatDelegate persists/restores it on its own once set,
+            // independent of Application.onCreate().
+            AppCompatDelegate.setDefaultNightMode(
+                    ThemeUtils.toNightMode(new AppSettings(this).getThemeMode())
             );
 
             InternalLogger.i(

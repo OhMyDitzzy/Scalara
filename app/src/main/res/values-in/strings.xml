@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Scalara</string>
+
+    <string name="crash_dialog_title">Scalara telah berhenti</string>
+    <string name="crash_dialog_message">Aplikasi mengalami kesalahan yang tidak terduga dan harus ditutup. Log di bawah ini mungkin dapat membantu menjelaskan apa yang terjadi.</string>
+    <string name="crash_dialog_copy_log">Salin log</string>
+    <string name="crash_dialog_ok">OK</string>
+    <string name="crash_dialog_log_copied">Log disalin ke papan klip</string>
+
+    <!-- ============================================================
+         Disclaimer screen
+         Shown once, on first launch after install, before setup.
+         ============================================================ -->
+    <string name="disclaimer_title">Sebelum Anda melanjutkan</string>
+    <string name="disclaimer_heading_what">Fungsi Scalara</string>
+    <string name="disclaimer_body_what">Scalara mengubah resolusi layar perangkat Anda tanpa root, menggunakan izin sistem WRITE_SECURE_SETTINGS dan mekanisme WindowManager yang sama di balik \"adb shell wm size\". Izin ini tidak dapat diberikan melalui jendela izin biasa \u2014 izin harus diberikan sekali melalui ADB, atau dikelola melalui Shizuku, sebelum Scalara dapat melakukan apa pun.</string>
+    <string name="disclaimer_heading_risks">Harap pahami risikonya</string>
+    <string name="disclaimer_body_risks">WRITE_SECURE_SETTINGS memungkinkan aplikasi mengubah pengaturan sistem yang aman, tidak hanya resolusi layar. Scalara hanya menggunakannya untuk mengubah resolusi dan kepadatan (density), tetapi Anda memercayai Scalara dengan izin yang, secara prinsip, dapat memengaruhi pengaturan sistem lainnya.\n\nMengatur resolusi yang tidak biasa dapat membuat beberapa aplikasi tidak ditampilkan dengan benar, membuat teks atau kontrol di layar sulit dibaca, atau dalam kasus yang jarang terjadi, membuat layar sulit dinavigasi hingga resolusi diatur ulang. Jika itu terjadi, Anda biasanya dapat memulihkannya dengan menghubungkan kembali ADB dan menjalankan perintah atur ulang (reset), atau melalui Pengaturan pada perangkat yang menyediakan opsi ukuran tampilan.</string>
+    <string name="disclaimer_heading_independence">Proyek independen</string>
+    <string name="disclaimer_body_independence">Scalara adalah proyek sumber terbuka (open-source) yang independen. Aplikasi ini tidak berafiliasi dengan, didukung oleh, atau ditopang oleh Google maupun produsen perangkat Anda.</string>
+    <string name="disclaimer_heading_consent">Persetujuan Anda</string>
+    <string name="disclaimer_body_consent">Dengan mengetuk \"Saya paham dan setuju\", Anda mengonfirmasi bahwa Anda telah membaca ketentuan di atas, memahami risiko dari pemberian izin WRITE_SECURE_SETTINGS, dan setuju untuk melanjutkan atas tanggung jawab Anda sendiri. Layar ini hanya muncul sekali, saat pertama kali Scalara dipasang.</string>
+    <string name="disclaimer_scroll_hint">Gulir ke paling bawah untuk melanjutkan</string>
+    <string name="disclaimer_button_decline">Tolak dan keluar</string>
+    <string name="disclaimer_button_accept">Saya paham dan setuju</string>
+
+    <!-- ============================================================
+         Setup wizard \u2014 shared
+         ============================================================ -->
+    <string name="setup_title">Pengaturan izin</string>
+    <string name="setup_step_indicator">Langkah %1$d dari %2$d</string>
+    <string name="setup_button_back">Kembali</string>
+    <string name="setup_button_next">Lanjut</string>
+
+    <!-- Step 1: method choice -->
+    <string name="setup_choose_title">Pilih cara memberikan izin</string>
+    <string name="setup_choose_subtitle">Scalara membutuhkan WRITE_SECURE_SETTINGS untuk mengubah resolusi layar Anda. Pilih salah satu dari dua metode yang didukung di bawah ini.</string>
+    <string name="setup_choose_adb_title">ADB</string>
+    <string name="setup_choose_adb_description">Berikan izin sekali dari komputer menggunakan satu perintah ADB. Izin tersebut kemudian akan tersimpan secara permanen \u2014 Scalara tidak akan menghubungi Shizuku sama sekali.</string>
+    <string name="setup_choose_shizuku_title">Shizuku</string>
+    <string name="setup_choose_shizuku_description">Biarkan aplikasi Shizuku mengelola izin untuk Anda. Tidak memerlukan komputer setelah Shizuku itu sendiri berjalan, tetapi Scalara bergantung pada layanan Shizuku yang harus tetap aktif.</string>
+    <string name="setup_choose_recommended_badge">Tidak perlu komputer</string>
+
+    <!-- Step 2: ADB flow -->
+    <string name="setup_adb_title">Berikan izin via ADB</string>
+    <string name="setup_adb_instructions">1. Hubungkan perangkat ini ke komputer yang sudah terpasang ADB, dengan penelusuran kesalahan USB (USB debugging) diaktifkan.\n2. Buka terminal di komputer tersebut.\n3. Jalankan perintah di bawah ini.\n4. Kembali ke sini dan ketuk \"Verifikasi izin\".</string>
+    <string name="setup_adb_command_label">Perintah untuk dijalankan</string>
+    <string name="setup_adb_copy_command">Salin perintah</string>
+    <string name="setup_adb_command_copied">Perintah disalin ke papan klip</string>
+    <string name="setup_adb_permanent_note">Setelah diberikan dengan cara ini, izin akan dianggap permanen. Scalara tidak akan meminta binder Shizuku atau meminta Anda memasang Shizuku.</string>
+    <string name="setup_button_verify_permission">Verifikasi izin</string>
+    <string name="setup_adb_not_granted_yet">Izin belum terdeteksi. Jalankan perintah di atas, lalu coba lagi.</string>
+
+    <!-- Step 2: Shizuku flow -->
+    <string name="setup_shizuku_title">Berikan izin via Shizuku</string>
+    <string name="setup_shizuku_instructions">1. Pasang Shizuku jika Anda belum memasangnya.\n2. Jalankan layanan Shizuku dari aplikasi Shizuku (melalui penautan ADB atau root, tergantung pada perangkat Anda).\n3. Kembali ke sini dan ketuk \"Minta izin\".</string>
+    <string name="setup_shizuku_get_app">Dapatkan Shizuku</string>
+    <string name="setup_shizuku_status_not_running">Layanan Shizuku tidak berjalan</string>
+    <string name="setup_shizuku_status_running_no_permission">Shizuku berjalan \u2014 izin belum diberikan</string>
+    <string name="setup_shizuku_status_granted">Shizuku berjalan dan izin telah diberikan</string>
+    <string name="setup_shizuku_status_denied_permanently">Izin ditolak dengan opsi \"jangan tanya lagi\". Berikan izin dari layar aplikasi Shizuku itu sendiri.</string>
+    <string name="setup_button_request_permission">Minta izin</string>
+    <string name="setup_button_open_shizuku">Buka Shizuku</string>
+
+    <!-- Step 3: verified / done -->
+    <string name="setup_done_title">Semua telah siap</string>
+    <string name="setup_done_body_adb">Izin WRITE_SECURE_SETTINGS telah terdeteksi. Scalara akan menganggap izin ini permanen.</string>
+    <string name="setup_done_body_shizuku">Izin telah diberikan melalui Shizuku. Pastikan layanan Shizuku tetap berjalan agar Scalara dapat terus berfungsi.</string>
+    <string name="setup_button_finish">Lanjutkan ke Scalara</string>
+
+    <!-- ============================================================
+         Permission-revoked guard
+         Shown from MainActivity if the configured method\'s permission
+         is no longer active.
+         ============================================================ -->
+    <string name="permission_lost_title">Izin tidak lagi aktif</string>
+    <string name="permission_lost_body_adb">Scalara tidak lagi memiliki izin WRITE_SECURE_SETTINGS. Izin ini mungkin telah dicabut oleh sistem atau aplikasi lain. Anda harus melakukan penyiapan kembali.</string>
+    <string name="permission_lost_body_shizuku">Scalara tidak lagi dapat menjangkau Shizuku, atau izin telah dicabut. Pastikan layanan Shizuku berjalan, lalu lakukan penyiapan kembali.</string>
+    <string name="permission_lost_button_setup">Buka penyiapan</string>
+
+    <!-- ============================================================
+         MainActivity
+         Placeholder screen proving setup succeeded; not the app's real UI.
+         ============================================================ -->
+    <string name="main_permission_status_adb">Izin diberikan via ADB</string>
+    <string name="main_permission_status_shizuku">Izin diberikan via Shizuku</string>
+
+    <!-- ============================================================
+         Preview countdown (PreviewRevertService)
+         ============================================================ -->
+    <string name="preview_notification_channel_name">Pratinjau resolusi</string>
+    <string name="preview_notification_channel_description">Menampilkan hitung mundur saat resolusi pratinjau diterapkan secara sementara.</string>
+    <string name="preview_notification_title">Mempratinjau resolusi</string>
+    <string name="preview_notification_body">Mengembalikan ke bawaan dalam %1$d d</string>
+    <string name="preview_notification_action_revert_now">Kembalikan sekarang</string>
+
+    <!-- ============================================================
+         MainActivity \u2014 toolbar overflow menu
+         ============================================================ -->
+    <string name="menu_settings">Pengaturan</string>
+    <string name="menu_export_import_presets">Ekspor/Impor prasetel</string>
+    <string name="menu_about">Tentang</string>
+
+    <!-- ============================================================
+         MainActivity \u2014 default resolution card
+         ============================================================ -->
+    <string name="default_resolution_title">Resolusi bawaan</string>
+    <string name="default_resolution_subtitle">Ini adalah resolusi dan kepadatan asli perangkat Anda. Gunakan Atur ulang jika Anda perlu mengembalikannya kapan saja.</string>
+    <string name="default_resolution_reset_button">Atur ulang ke bawaan</string>
+    <string name="default_resolution_dpi_format">%1$d dpi</string>
+    <string name="default_resolution_size_format">%1$d \u00d7 %2$d</string>
+
+    <!-- ============================================================
+         MainActivity \u2014 presets section
+         ============================================================ -->
+    <string name="presets_section_title">Prasetel</string>
+    <string name="presets_empty_title">Belum ada prasetel</string>
+    <string name="presets_empty_subtitle">Ketuk tombol + untuk menambahkan prasetel resolusi pertama Anda.</string>
+    <string name="preset_add_fab_content_description">Tambah prasetel</string>
+    <string name="preset_overflow_content_description">Opsi lainnya</string>
+    <string name="preset_details_format">%1$d \u00d7 %2$d \u00b7 %3$d dpi</string>
+
+    <!-- ============================================================
+         Add/edit preset bottom sheet
+         ============================================================ -->
+    <string name="add_preset_title">Tambah prasetel</string>
+    <string name="add_preset_name_hint">Nama prasetel</string>
+    <string name="add_preset_width_hint">Lebar (px)</string>
+    <string name="add_preset_height_hint">Tinggi (px)</string>
+    <string name="add_preset_dpi_hint">DPI</string>
+    <string name="add_preset_apply_button">Terapkan</string>
+    <string name="add_preset_try_out_button">Coba sekarang</string>
+    <string name="add_preset_save_button">Simpan</string>
+    <string name="add_preset_cancel_button">Batal</string>
+    <string name="add_preset_error_name_required">Masukkan nama untuk prasetel ini</string>
+    <string name="add_preset_error_field_required">Wajib diisi</string>
+    <string name="add_preset_error_value_too_low">Harus lebih besar dari 0</string>
+    <string name="add_preset_preview_countdown_format">Mempratinjau \u2014 mengembalikan dalam %1$dd</string>
+    <string name="add_preset_dangerous_resolution_title">Resolusi ini terlihat berisiko</string>
+    <string name="add_preset_dangerous_resolution_message">%1$d \u00d7 %2$d @ %3$d dpi sangat berbeda dari bawaan perangkat Anda. Beberapa aplikasi, atau Scalara sendiri, mungkin menjadi sulit dilihat atau digunakan sampai Anda mengaturnya ulang. Tetap lanjutkan?</string>
+    <string name="add_preset_dangerous_resolution_continue">Tetap lanjutkan</string>
+
+    <!-- ============================================================
+         Preset overflow bottom sheet (Apply / Delete / Export)
+         Per-preset Import was removed: importing a single preset back
+         into a list that may already have it doesn't have the same
+         one-off shape Export does. Whole-list import lives in the
+         app-level Export/Import sheet instead (see below).
+         ============================================================ -->
+    <string name="preset_options_apply">Terapkan</string>
+    <string name="preset_options_delete">Hapus</string>
+    <string name="preset_options_export">Ekspor</string>
+    <string name="preset_options_delete_confirm_title">Hapus prasetel ini?</string>
+    <string name="preset_options_delete_confirm_message">\"%1$s\" akan dihapus. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="preset_options_delete_confirm_button">Hapus</string>
+    <string name="preset_options_cancel_button">Batal</string>
+
+    <!-- ============================================================
+         App-level Export/Import sheet (ExportImportSheet)
+         Reached from MainActivity's overflow menu. Covers the whole
+         saved preset list, unlike the single-preset Export above.
+         ============================================================ -->
+    <string name="export_import_sheet_title">Ekspor atau impor prasetel</string>
+    <string name="export_import_sheet_description">Ekspor seluruh daftar prasetel Anda sebagai berkas .scl yang terenkripsi, atau impor berkas yang telah Anda ekspor sebelumnya.</string>
+    <string name="export_import_sheet_export_all">Ekspor semua prasetel</string>
+    <string name="export_import_sheet_import">Impor prasetel</string>
+
+    <!-- Password prompt (PasswordPromptDialog) \u2014 shared by both the
+         single-preset Export above and the app-level sheet's Export/Import. -->
+    <string name="export_password_dialog_title">Atur kata sandi</string>
+    <string name="export_password_dialog_message">Kata sandi ini mengenkripsi berkas yang Anda ekspor. Scalara tidak menyimpannya \u2014 jika Anda lupanya, berkas tidak dapat dipulihkan.</string>
+    <string name="export_password_dialog_confirm_button">Ekspor</string>
+    <string name="import_password_dialog_title">Masukkan kata sandi</string>
+    <string name="import_password_dialog_message">Masukkan kata sandi yang digunakan saat berkas .scl ini diekspor.</string>
+    <string name="import_password_dialog_confirm_button">Impor</string>
+    <string name="password_dialog_hint">Kata sandi</string>
+    <string name="password_dialog_confirm_hint">Konfirmasi kata sandi</string>
+    <string name="password_dialog_error_empty">Masukkan kata sandi</string>
+    <string name="password_dialog_error_mismatch">Kata sandi tidak cocok</string>
+
+    <!-- Crypto progress dialog (CryptoProgressDialog) -->
+    <string name="crypto_progress_exporting">Mengekspor\u2026</string>
+    <string name="crypto_progress_importing">Mendekripsi\u2026</string>
+
+    <!-- Import choice dialog (Merge vs Replace) -->
+    <string name="import_choice_dialog_title">Impor prasetel</string>
+    <plurals name="import_choice_found_count">
+        <item quantity="one">%1$d prasetel ditemukan dalam berkas ini.</item>
+        <item quantity="other">%1$d prasetel ditemukan dalam berkas ini.</item>
+    </plurals>
+    <string name="import_choice_merge_title">Gabungkan</string>
+    <string name="import_choice_merge_description">Tambahkan prasetel yang diimpor ke daftar Anda yang sudah ada.</string>
+    <string name="import_choice_replace_title">Gantikan</string>
+    <string name="import_choice_replace_description">Hapus prasetel Anda yang ada dan ganti dengan prasetel yang diimpor. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="import_choice_confirm_button">Impor</string>
+
+    <!-- Export/Import result dialog (icon + title/message + OK button); see ResultDialog -->
+    <string name="result_dialog_export_success_title">Ekspor berhasil</string>
+    <string name="message_export_success">Prasetel Anda berhasil diekspor.</string>
+    <string name="result_dialog_export_failed_title">Ekspor gagal</string>
+    <string name="message_export_failed">Gagal mengekspor. Pastikan lokasi tujuan masih dapat diakses.</string>
+    <string name="result_dialog_import_success_title">Impor berhasil</string>
+    <string name="message_import_success">Prasetel Anda berhasil diimpor.</string>
+    <string name="result_dialog_import_failed_title">Impor gagal</string>
+    <string name="message_import_failed">Gagal mengimpor. Pastikan berkas masih dapat diakses.</string>
+    <string name="result_dialog_ok_button">OK</string>
+
+    <!-- Other Export/Import messages (Snackbar) -->
+    <string name="message_import_wrong_password">Kata sandi salah</string>
+    <string name="message_import_invalid_file">Ini tidak tampak seperti berkas ekspor Scalara yang valid</string>
+    <string name="message_import_empty_file">Berkas ini tidak berisi prasetel apa pun</string>
+
+    <!-- ============================================================
+         One-off status messages (Snackbar)
+         ============================================================ -->
+    <string name="message_reset_success">Resolusi diatur ulang ke bawaan</string>
+    <string name="message_reset_failed">Gagal mengatur ulang resolusi. Pastikan Scalara masih memiliki izin yang diperlukan.</string>
+    <string name="message_preset_saved">Prasetel disimpan</string>
+    <string name="message_preset_deleted">Prasetel dihapus</string>
+    <string name="message_apply_success">Resolusi diterapkan</string>
+    <string name="message_apply_failed">Gagal menerapkan resolusi. Pastikan Scalara masih memiliki izin yang diperlukan.</string>
+
+    <!-- ============================================================
+         Settings screen (SettingsActivity)
+         ============================================================ -->
+    <string name="settings_title">Pengaturan</string>
+
+    <!-- Theme section -->
+    <string name="settings_section_theme">Tema</string>
+    <string name="settings_theme_light">Terang</string>
+    <string name="settings_theme_dark">Gelap</string>
+    <string name="settings_theme_follow_system">Ikuti sistem</string>
+
+    <!-- Language section. The list itself is never hardcoded here or in
+         Java: it's built at build time from whichever res/values-* language
+         directories actually exist (see app/build.gradle.kts's
+         generateLocalesList task and LocaleUtils), so this section's list
+         of options grows automatically as translations are added. -->
+    <string name="settings_section_language">Bahasa</string>
+    <string name="settings_language_row_label">Bahasa aplikasi</string>
+    <string name="settings_language_follow_system">Ikuti sistem</string>
+    <string name="settings_language_picker_title">Pilih bahasa</string>
+
+    <!-- App settings section -->
+    <string name="settings_section_app">Pengaturan aplikasi</string>
+    <string name="settings_dangerous_resolution_warning_title">Peringatkan tentang resolusi berisiko</string>
+    <string name="settings_dangerous_resolution_warning_description">Tampilkan konfirmasi sebelum menerapkan atau mempratinjau resolusi yang sangat berbeda dari bawaan perangkat Anda.</string>
+    <string name="settings_preview_timeout_title">Batas waktu pratinjau</string>
+    <string name="settings_preview_timeout_description">Berapa lama pratinjau \"Coba sekarang\" tetap diterapkan sebelum dikembalikan secara otomatis, dalam milidetik.</string>
+    <string name="settings_preview_timeout_hint">Batas waktu (ms)</string>
+    <string name="settings_preview_timeout_error_range">Masukkan nilai antara %1$d dan %2$d</string>
+    <string name="settings_preview_timeout_save_button">Simpan</string>
+    <string name="settings_preview_timeout_saved">Batas waktu pratinjau diperbarui</string>
+
+    <!-- ============================================================
+         About screen (AboutActivity)
+         ============================================================ -->
+    <string name="about_title">Tentang</string>
+    <string name="about_app_description">Scalara mengubah resolusi layar dan kepadatan (density) perangkat Anda tanpa root, menggunakan mekanisme sistem yang sama di balik \"adb shell wm size\".</string>
+    <string name="about_version">Versi %1$s</string>
+    <string name="about_version_unknown">Versi tidak diketahui</string>
+    <string name="about_section_repository">Kode sumber</string>
+    <string name="about_repository_description">Scalara adalah sumber terbuka (open source). Lihat kode, laporkan masalah, atau berkontribusi di GitHub.</string>
+    <string name="about_repository_button">Lihat di GitHub</string>
+    <string name="about_section_contributors">Kontributor</string>
+    <string name="about_contributors_loading">Memuat kontributor\u2026</string>
+    <string name="about_contributors_error">Gagal memuat kontributor. Periksa koneksi Anda dan coba lagi.</string>
+    <string name="about_contributors_retry_button">Coba lagi</string>
+    <string name="about_contributor_contributions_format">%1$d kontribusi</string>
+</resources>
