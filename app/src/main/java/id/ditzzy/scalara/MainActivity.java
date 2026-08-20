@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // ================================================================
-    // Permission guard (pre-existing; unchanged in behavior)
+    // Permission guard
     // ================================================================
 
     private void renderPermissionStatus() {
@@ -146,11 +146,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Re-verifies that the permission backing the configured setup method
-     * is still active, and surfaces the non-dismissible guard dialog if
-     * it's not. Safe to call repeatedly — {@link #permissionLostDialogShowing}
-     * prevents stacking multiple dialogs if this fires more than once before
-     * the user acts on the first one.
+     * Re-verifies that {@code WRITE_SECURE_SETTINGS} is still granted, and
+     * surfaces the non-dismissible guard dialog if it's not. Safe to call
+     * repeatedly — {@link #permissionLostDialogShowing} prevents stacking
+     * multiple dialogs if this fires more than once before the user acts on
+     * the first one.
+     *
+     * <p>This checks {@link SecureSettingsPermission} regardless of setup
+     * method. Shizuku is only ever used as a one-time grantor during setup
+     * (see {@link id.ditzzy.scalara.setup.ShizukuManager#grantSecureSettings});
+     * once it runs {@code pm grant}, the resulting permission is tracked by
+     * the system's own {@link android.content.pm.PackageManager}, the same
+     * place {@link id.ditzzy.scalara.resolution.DisplayResolutionController}
+     * checks before every resolution/DPI write. Stopping the Shizuku service
+     * or revoking Scalara's Shizuku authorization afterward does not affect
+     * this grant, so it must not be treated as a loss of permission here.
      */
     private void checkCurrentPermissionState() {
         if (permissionLostDialogShowing) {
@@ -158,21 +168,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         AppPreferences.SetupMethod method = preferences.getSetupMethod();
-        boolean permissionActive;
-
-        if (method == AppPreferences.SetupMethod.SHIZUKU) {
-            // A Shizuku-managed grant is not necessarily visible through
-            // this app's own PackageManager — it lives behind Shizuku's own
-            // server process. shizukuManager.isPermissionGranted() is the
-            // one that actually calls Shizuku.checkSelfPermission(), the
-            // same check used during setup; it also folds in the
-            // service-running check, so a dead binder alone is enough to
-            // report "not active" without a separate ping here.
-            permissionActive = shizukuManager != null && shizukuManager.isPermissionGranted();
-        } else {
-            // ADB (or, defensively, NONE — treated the same as "not set up").
-            permissionActive = SecureSettingsPermission.isGranted(this);
-        }
+        boolean permissionActive = SecureSettingsPermission.isGranted(this);
 
         if (!permissionActive) {
             InternalLogger.w(TAG, "Permission for method " + method + " is no longer active");

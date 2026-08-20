@@ -14,7 +14,7 @@
          ============================================================ -->
     <string name="disclaimer_title">Before you continue</string>
     <string name="disclaimer_heading_what">What Scalara does</string>
-    <string name="disclaimer_body_what">Scalara changes your device\'s display resolution without root, using the WRITE_SECURE_SETTINGS system permission and the same WindowManager mechanism behind \"adb shell wm size\". This permission cannot be granted through a normal permission prompt \u2014 it has to be granted once via ADB, or managed through Shizuku, before Scalara can do anything.</string>
+    <string name="disclaimer_body_what">Scalara changes your device\'s display resolution without root, using the WRITE_SECURE_SETTINGS system permission and the same WindowManager mechanism behind \"adb shell wm size\". This permission cannot be granted through a normal permission prompt \u2014 it has to be granted once via ADB, or granted once through Shizuku, before Scalara can do anything.</string>
     <string name="disclaimer_heading_risks">Please understand the risks</string>
     <string name="disclaimer_body_risks">WRITE_SECURE_SETTINGS lets an app modify secure system settings, not just display resolution. Scalara only uses it to change resolution and density, but you\'re trusting Scalara with a permission that could, in principle, affect other system settings.\n\nSetting an unusual resolution can make some apps render incorrectly, make on-screen text or controls hard to read, or in rare cases make the screen difficult to navigate until the resolution is reset. If that happens, you can usually recover by reconnecting ADB and running the reset command, or via Settings on devices that expose a display size option.</string>
     <string name="disclaimer_heading_independence">Independent project</string>
@@ -39,7 +39,7 @@
     <string name="setup_choose_adb_title">ADB</string>
     <string name="setup_choose_adb_description">Grant the permission once from a computer using a single ADB command. The permission then stays granted permanently \u2014 Scalara will not contact Shizuku at all.</string>
     <string name="setup_choose_shizuku_title">Shizuku</string>
-    <string name="setup_choose_shizuku_description">Let the Shizuku app manage the permission for you. No computer needed after Shizuku itself is running, but Scalara depends on the Shizuku service staying active.</string>
+    <string name="setup_choose_shizuku_description">Let the Shizuku app grant the permission for you, on-device, no computer needed. Shizuku is only used for this one-time grant \u2014 once it\'s done, the permission stays even if Shizuku is later disabled or Scalara\'s access to it is removed.</string>
     <string name="setup_choose_recommended_badge">No computer needed</string>
 
     <!-- Step 2: ADB flow -->
@@ -66,7 +66,7 @@
     <!-- Step 3: verified / done -->
     <string name="setup_done_title">You\'re all set</string>
     <string name="setup_done_body_adb">The WRITE_SECURE_SETTINGS permission was detected. Scalara will treat this as permanent.</string>
-    <string name="setup_done_body_shizuku">The permission is granted through Shizuku. Keep the Shizuku service running so Scalara continues to work.</string>
+    <string name="setup_done_body_shizuku">The WRITE_SECURE_SETTINGS permission was granted through Shizuku. Scalara will treat this as permanent \u2014 you can disable the Shizuku service or remove Scalara\'s access from it afterward, and Scalara will keep working.</string>
     <string name="setup_button_finish">Continue to Scalara</string>
 
     <!-- ============================================================
@@ -76,7 +76,7 @@
          ============================================================ -->
     <string name="permission_lost_title">Permission no longer active</string>
     <string name="permission_lost_body_adb">Scalara no longer has the WRITE_SECURE_SETTINGS permission. It may have been revoked by the system or another app. You\'ll need to go through setup again.</string>
-    <string name="permission_lost_body_shizuku">Scalara can no longer reach Shizuku, or the permission was revoked. Make sure the Shizuku service is running, then go through setup again.</string>
+    <string name="permission_lost_body_shizuku">Scalara no longer has the WRITE_SECURE_SETTINGS permission that was originally granted through Shizuku. It may have been revoked by the system or another app \u2014 this is unrelated to whether the Shizuku service is currently running. You\'ll need to go through setup again.</string>
     <string name="permission_lost_button_setup">Go to setup</string>
 
     <!-- ============================================================
@@ -84,7 +84,7 @@
          Placeholder screen proving setup succeeded; not the app's real UI.
          ============================================================ -->
     <string name="main_permission_status_adb">Permission granted via ADB</string>
-    <string name="main_permission_status_shizuku">Permission granted via Shizuku</string>
+    <string name="main_permission_status_shizuku">Permission granted via Shizuku (one-time)</string>
 
     <!-- ============================================================
          Preview countdown (PreviewRevertService)

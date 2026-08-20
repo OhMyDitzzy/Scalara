@@ -47,7 +47,7 @@ adb shell pm grant id.ditzzy.scalara android.permission.WRITE_SECURE_SETTINGS
 ```
 
 **Option B — [Shizuku](https://shizuku.rikka.app/).** If you'd rather not
-plug into a computer every time, Shizuku gives Scalara the same permission
+type an ADB command yourself, Shizuku gives Scalara the same permission
 through a privileged, on-device broker instead. Once Shizuku itself is
 running (via its own one-time ADB/wireless-debugging/root activation),
 Scalara binds a small privileged helper service
@@ -57,13 +57,23 @@ ADB commands, no computer needed for this step. The setup wizard
 (`SetupActivity`) walks through requesting the Shizuku permission and
 triggering this grant with a couple of taps.
 
+Shizuku's role ends there. `pm grant` is a one-shot call — Scalara binds the
+helper service, runs it, and unbinds immediately (see `ShizukuManager`). The
+resulting `WRITE_SECURE_SETTINGS` grant is tracked by Android's own
+`PackageManager`, the same place it'd live had you used Option A, so it is
+**not** contingent on Shizuku staying installed, active, or authorized for
+Scalara afterward. Disabling the Shizuku service or removing Scalara's
+access from the Shizuku app does not revoke it.
+
 Either way, once granted:
 - Scalara can change resolution and density directly, instantly, without root
   and without a persistent ADB/computer connection.
 - The grant is checked every time the app resumes (`MainActivity`'s
-  permission guard); if it's ever revoked — by the system, by `pm revoke`, or
-  because the Shizuku service was stopped — Scalara detects it and routes you
-  back into setup rather than failing silently mid-action.
+  permission guard), by asking `PackageManager` for
+  `WRITE_SECURE_SETTINGS` directly — regardless of which option was used to
+  grant it. If it's ever actually revoked — by the system or by
+  `pm revoke` — Scalara detects it and routes you back into setup rather
+  than failing silently mid-action.
 
 ## Features
 

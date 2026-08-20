@@ -14,7 +14,7 @@
          ============================================================ -->
     <string name="disclaimer_title">Sebelum Anda melanjutkan</string>
     <string name="disclaimer_heading_what">Fungsi Scalara</string>
-    <string name="disclaimer_body_what">Scalara mengubah resolusi layar perangkat Anda tanpa root, menggunakan izin sistem WRITE_SECURE_SETTINGS dan mekanisme WindowManager yang sama di balik \"adb shell wm size\". Izin ini tidak dapat diberikan melalui jendela izin biasa \u2014 izin harus diberikan sekali melalui ADB, atau dikelola melalui Shizuku, sebelum Scalara dapat melakukan apa pun.</string>
+    <string name="disclaimer_body_what">Scalara mengubah resolusi layar perangkat Anda tanpa root, menggunakan izin sistem WRITE_SECURE_SETTINGS dan mekanisme WindowManager yang sama di balik \"adb shell wm size\". Izin ini tidak dapat diberikan melalui jendela izin biasa \u2014 izin harus diberikan sekali melalui ADB, atau diberikan sekali melalui Shizuku, sebelum Scalara dapat melakukan apa pun.</string>
     <string name="disclaimer_heading_risks">Harap pahami risikonya</string>
     <string name="disclaimer_body_risks">WRITE_SECURE_SETTINGS memungkinkan aplikasi mengubah pengaturan sistem yang aman, tidak hanya resolusi layar. Scalara hanya menggunakannya untuk mengubah resolusi dan kepadatan (density), tetapi Anda memercayai Scalara dengan izin yang, secara prinsip, dapat memengaruhi pengaturan sistem lainnya.\n\nMengatur resolusi yang tidak biasa dapat membuat beberapa aplikasi tidak ditampilkan dengan benar, membuat teks atau kontrol di layar sulit dibaca, atau dalam kasus yang jarang terjadi, membuat layar sulit dinavigasi hingga resolusi diatur ulang. Jika itu terjadi, Anda biasanya dapat memulihkannya dengan menghubungkan kembali ADB dan menjalankan perintah atur ulang (reset), atau melalui Pengaturan pada perangkat yang menyediakan opsi ukuran tampilan.</string>
     <string name="disclaimer_heading_independence">Proyek independen</string>
@@ -39,7 +39,7 @@
     <string name="setup_choose_adb_title">ADB</string>
     <string name="setup_choose_adb_description">Berikan izin sekali dari komputer menggunakan satu perintah ADB. Izin tersebut kemudian akan tersimpan secara permanen \u2014 Scalara tidak akan menghubungi Shizuku sama sekali.</string>
     <string name="setup_choose_shizuku_title">Shizuku</string>
-    <string name="setup_choose_shizuku_description">Biarkan aplikasi Shizuku mengelola izin untuk Anda. Tidak memerlukan komputer setelah Shizuku itu sendiri berjalan, tetapi Scalara bergantung pada layanan Shizuku yang harus tetap aktif.</string>
+    <string name="setup_choose_shizuku_description">Biarkan aplikasi Shizuku memberikan izin untuk Anda, langsung di perangkat, tanpa perlu komputer. Shizuku hanya digunakan untuk pemberian izin satu kali ini \u2014 setelah selesai, izin akan tetap tersimpan meskipun Shizuku dinonaktifkan atau akses Scalara ke Shizuku dicabut nantinya.</string>
     <string name="setup_choose_recommended_badge">Tidak perlu komputer</string>
 
     <!-- Step 2: ADB flow -->
@@ -66,7 +66,7 @@
     <!-- Step 3: verified / done -->
     <string name="setup_done_title">Semua telah siap</string>
     <string name="setup_done_body_adb">Izin WRITE_SECURE_SETTINGS telah terdeteksi. Scalara akan menganggap izin ini permanen.</string>
-    <string name="setup_done_body_shizuku">Izin telah diberikan melalui Shizuku. Pastikan layanan Shizuku tetap berjalan agar Scalara dapat terus berfungsi.</string>
+    <string name="setup_done_body_shizuku">Izin WRITE_SECURE_SETTINGS telah diberikan melalui Shizuku. Scalara akan menganggap izin ini permanen \u2014 Anda boleh menonaktifkan layanan Shizuku atau mencabut akses Scalara dari Shizuku setelah ini, dan Scalara akan tetap berfungsi.</string>
     <string name="setup_button_finish">Lanjutkan ke Scalara</string>
 
     <!-- ============================================================
@@ -76,7 +76,7 @@
          ============================================================ -->
     <string name="permission_lost_title">Izin tidak lagi aktif</string>
     <string name="permission_lost_body_adb">Scalara tidak lagi memiliki izin WRITE_SECURE_SETTINGS. Izin ini mungkin telah dicabut oleh sistem atau aplikasi lain. Anda harus melakukan penyiapan kembali.</string>
-    <string name="permission_lost_body_shizuku">Scalara tidak lagi dapat menjangkau Shizuku, atau izin telah dicabut. Pastikan layanan Shizuku berjalan, lalu lakukan penyiapan kembali.</string>
+    <string name="permission_lost_body_shizuku">Scalara tidak lagi memiliki izin WRITE_SECURE_SETTINGS yang sebelumnya diberikan melalui Shizuku. Izin ini mungkin telah dicabut oleh sistem atau aplikasi lain \u2014 hal ini tidak ada kaitannya dengan apakah layanan Shizuku sedang berjalan atau tidak. Anda harus melakukan penyiapan kembali.</string>
     <string name="permission_lost_button_setup">Buka penyiapan</string>
 
     <!-- ============================================================
@@ -84,7 +84,7 @@
          Placeholder screen proving setup succeeded; not the app's real UI.
          ============================================================ -->
     <string name="main_permission_status_adb">Izin diberikan via ADB</string>
-    <string name="main_permission_status_shizuku">Izin diberikan via Shizuku</string>
+    <string name="main_permission_status_shizuku">Izin diberikan via Shizuku (satu kali)</string>
 
     <!-- ============================================================
          Preview countdown (PreviewRevertService)
