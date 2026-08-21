@@ -59,6 +59,18 @@
         <item name="cornerSize">50%</item>
     </style>
     <style
+        name="Widget.Scalara.CardView.Choice"
+        parent="Widget.Material3.CardView.Outlined">
+        <item name="cardBackgroundColor">@color/setup_choice_card_background</item>
+        <item name="strokeColor">@color/setup_choice_card_stroke</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="rippleColor">@color/setup_choice_card_ripple</item>
+        <item name="android:stateListAnimator">@animator/setup_choice_card_elevation</item>
+        <item name="checkedIcon">@null</item>
+    </style>
+    <style
         name="Scalara.SplashTheme"
         parent="Theme.SplashScreen.IconBackground">
         <item name="windowSplashScreenBackground">@color/blue_theme_surface</item>

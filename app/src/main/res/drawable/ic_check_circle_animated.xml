@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Plays once when the "setup complete" step appears:
+       0-220ms   scale_group pops in from 60% -> 100% (overshoot)
+       80-380ms  circle_path draws itself (trimPathEnd 0 -> 1)
+       380-620ms check_path draws itself (trimPathEnd 0 -> 1)
+     Started manually from SetupActivity via Animatable#start() so it can be
+     re-played if the user backs out of the "done" step and returns to it.
+-->
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_check_circle_animated_base">
+
+    <target android:name="scale_group">
+        <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:valueFrom="0.6"
+                    android:valueTo="1"
+                    android:duration="260"
+                    android:startOffset="0"
+                    android:valueType="floatType"
+                    android:interpolator="@interpolator/setup_check_overshoot" />
+                <objectAnimator
+                    android:propertyName="scaleY"
+                    android:valueFrom="0.6"
+                    android:valueTo="1"
+                    android:duration="260"
+                    android:startOffset="0"
+                    android:valueType="floatType"
+                    android:interpolator="@interpolator/setup_check_overshoot" />
+            </set>
+        </aapt:attr>
+    </target>
+
+    <target android:name="circle_path">
+        <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:duration="300"
+                android:startOffset="80"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+        </aapt:attr>
+    </target>
+
+    <target android:name="check_path">
+        <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:duration="240"
+                android:startOffset="380"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+        </aapt:attr>
+    </target>
+
+</animated-vector>

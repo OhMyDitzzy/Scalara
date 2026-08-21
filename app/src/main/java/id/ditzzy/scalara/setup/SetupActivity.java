@@ -4,6 +4,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -127,11 +129,13 @@ public class SetupActivity extends AppCompatActivity implements ShizukuManager.L
 
         binding.cardAdb.setChecked(adbSelected);
         binding.radioAdb.setChecked(adbSelected);
+        binding.iconAdbSelected.setVisibility(adbSelected ? View.VISIBLE : View.GONE);
 
         boolean shizukuSelected = method == AppPreferences.SetupMethod.SHIZUKU;
 
         binding.cardShizuku.setChecked(shizukuSelected);
         binding.radioShizuku.setChecked(shizukuSelected);
+        binding.iconShizukuSelected.setVisibility(shizukuSelected ? View.VISIBLE : View.GONE);
 
         setPrimaryAction(PrimaryAction.GO_TO_METHOD_DETAIL, R.string.setup_button_next, true);
     }
@@ -206,7 +210,7 @@ public class SetupActivity extends AppCompatActivity implements ShizukuManager.L
         binding.buttonBack.setVisibility(
                 currentStep == Step.CHOOSE_METHOD ? View.INVISIBLE : View.VISIBLE);
 
-        binding.stepProgress.setProgress(stepOrdinalForProgress());
+        binding.stepProgress.setCurrentStep(stepOrdinalForProgress());
 
         binding.scrollView.scrollTo(0, 0);
         switch (currentStep) {
@@ -231,7 +235,24 @@ public class SetupActivity extends AppCompatActivity implements ShizukuManager.L
                                 ? R.string.setup_done_body_adb
                                 : R.string.setup_done_body_shizuku);
 
+                playDoneCheckAnimation();
+
                 break;
+        }
+    }
+
+    /**
+     * Plays the draw-on checkmark once whenever the "done" step becomes visible,
+     * including re-entries (e.g. user goes Back then forward again).
+     */
+    private void playDoneCheckAnimation() {
+        Drawable drawable = binding.iconDoneCheck.getDrawable();
+
+        if (drawable instanceof Animatable) {
+            Animatable animatable = (Animatable) drawable;
+
+            animatable.stop();
+            binding.iconDoneCheck.post(animatable::start);
         }
     }
 

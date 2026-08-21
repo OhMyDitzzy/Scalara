@@ -19,9 +19,6 @@ import java.lang.reflect.Method;
  * and friends. Every method here requires the caller to already hold
  * {@code WRITE_SECURE_SETTINGS} (see {@code SecureSettingsPermission}) or the
  * underlying {@code IWindowManager} call throws a {@link SecurityException}.
- *
- * <p>Ported from Scalara's sibling project Pixelify's {@code WM.kt}, kept
- * behaviorally identical.
  */
 @SuppressLint("PrivateApi")
 public final class DisplayResolutionController {

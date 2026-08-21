@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gentle overshoot (tension 1.8) used for the "setup complete" scale-in pop. -->
+<overshootInterpolator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:tension="1.8" />
