@@ -54,7 +54,7 @@ jobs:
         run: ./gradlew assemble${{ inputs.build_type == 'release' && 'Release' || 'Debug' }} --stacktrace
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: app-${{ inputs.build_type }}-${{ github.run_number }}
           path: app/build/outputs/apk/${{ inputs.build_type }}/*.apk
