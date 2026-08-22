@@ -15,12 +15,16 @@
         android:background="?attr/colorSurface"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
 
+        <!-- Taller, larger-title toolbar: M3 Expressive leans on typography
+             as a visual anchor rather than a compact, plain app-bar label. -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="72dp"
+            android:paddingTop="8dp"
             app:menu="@menu/main_menu"
             app:title="@string/app_name"
+            app:titleTextAppearance="@style/TextAppearance.Scalara.ToolbarTitle"
             app:titleTextColor="?attr/colorOnSurface" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -29,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="88dp"
+        android:paddingBottom="96dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -38,23 +42,23 @@
             android:orientation="vertical">
 
             <!-- ============================================================
-                 Default resolution card
+                 Default resolution "hero" card
+                 Tonal primaryContainer fill + large asymmetric corner make
+                 this the screen's clear focal point, instead of the same
+                 neutral outlined-card treatment every other card uses.
                  ============================================================ -->
             <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Scalara.CardView.Hero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
-                app:cardElevation="0dp"
-                app:strokeColor="?attr/colorOutlineVariant"
-                app:strokeWidth="1dp"
-                app:cardCornerRadius="20dp">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="24dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -62,13 +66,12 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
+                        <!-- Pill-shaped icon "blob" instead of a rounded
+                             square, for a softer, more organic focal shape. -->
                         <com.google.android.material.card.MaterialCardView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            app:cardBackgroundColor="?attr/colorPrimaryContainer"
-                            app:cardElevation="0dp"
-                            app:strokeWidth="0dp"
-                            app:cardCornerRadius="12dp">
+                            style="@style/Widget.Scalara.IconBlob"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp">
 
                             <ImageView
                                 android:layout_width="22dp"
@@ -76,28 +79,30 @@
                                 android:layout_gravity="center"
                                 android:contentDescription="@null"
                                 android:src="@drawable/ic_monitor"
-                                app:tint="?attr/colorOnPrimaryContainer" />
+                                app:tint="?attr/colorPrimaryContainer" />
 
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
+                            android:layout_marginStart="14dp"
                             android:layout_weight="1"
                             android:text="@string/default_resolution_title"
                             android:textAppearance="?attr/textAppearanceTitleMedium"
-                            android:textColor="?attr/colorOnSurface" />
+                            android:textColor="?attr/colorOnPrimaryContainer" />
 
                     </LinearLayout>
 
+                    <!-- Larger headline than before (Headline -> Display) so
+                         the number itself reads as the hero content. -->
                     <TextView
                         android:id="@+id/text_default_resolution_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:textAppearance="?attr/textAppearanceHeadlineSmall"
-                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginTop="20dp"
+                        android:textAppearance="?attr/textAppearanceDisplaySmall"
+                        android:textColor="?attr/colorOnPrimaryContainer"
                         tools:text="1080 \u00d7 2400" />
 
                     <TextView
@@ -106,37 +111,47 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
-                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textColor="?attr/colorOnPrimaryContainer"
                         tools:text="420 dpi" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
+                        android:alpha="0.85"
                         android:text="@string/default_resolution_subtitle"
                         android:textAppearance="?attr/textAppearanceBodySmall"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
+                        android:textColor="?attr/colorOnPrimaryContainer" />
 
                     <TextView
                         android:id="@+id/text_setup_method"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="14dp"
                         android:drawablePadding="6dp"
                         android:gravity="center_vertical"
                         android:textAppearance="?attr/textAppearanceLabelMedium"
-                        android:textColor="?attr/colorPrimary"
+                        android:textColor="?attr/colorOnPrimaryContainer"
                         app:drawableStartCompat="@drawable/ic_check_circle"
+                        app:drawableTint="?attr/colorOnPrimaryContainer"
                         tools:text="Permission granted via ADB" />
 
+                    <!-- Tonal (filled, not outlined) reset button: sits on
+                         the container colour with an on-container tint,
+                         reading as an expressive filled action rather than
+                         a plain outlined button on a neutral card. -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_reset_default"
-                        style="?attr/materialButtonOutlinedStyle"
+                        style="@style/Widget.Material3.Button.TonalButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="20dp"
+                        android:backgroundTint="?attr/colorOnPrimaryContainer"
                         android:text="@string/default_resolution_reset_button"
-                        app:icon="@drawable/ic_restore" />
+                        android:textColor="?attr/colorPrimaryContainer"
+                        app:icon="@drawable/ic_restore"
+                        app:iconTint="?attr/colorPrimaryContainer"
+                        app:rippleColor="?attr/colorPrimaryContainer" />
 
                 </LinearLayout>
 
@@ -148,17 +163,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="28dp"
                 android:text="@string/presets_section_title"
-                android:textAppearance="?attr/textAppearanceTitleSmall"
-                android:textColor="?attr/colorOnSurfaceVariant" />
+                android:textAppearance="@style/TextAppearance.Scalara.SectionLabel"
+                android:textColor="?attr/colorPrimary" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_presets"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
@@ -174,20 +189,30 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="40dp"
-                android:paddingVertical="32dp">
+                android:paddingVertical="40dp">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:alpha="0.6"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_bookmark_border"
-                    app:tint="?attr/colorOnSurfaceVariant" />
+                <!-- Icon now sits inside a tonal pill blob, echoing the hero
+                     card's icon treatment, instead of a bare tinted glyph
+                     floating on the surface. -->
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Scalara.IconBlob"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_bookmark_border"
+                        app:tint="?attr/colorPrimaryContainer" />
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="16dp"
                     android:gravity="center"
                     android:text="@string/presets_empty_title"
                     android:textAppearance="?attr/textAppearanceTitleSmall"
@@ -208,16 +233,19 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <!-- Extended FAB: icon + label, pill-shaped, tonal container colour.
+         One clear primary action on this screen, so it earns the more
+         expressive extended treatment instead of an icon-only circle. -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab_add_preset"
+        style="@style/Widget.Scalara.ExtendedFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
         android:contentDescription="@string/preset_add_fab_content_description"
-        android:src="@drawable/ic_add"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
-        app:tint="?attr/colorOnPrimaryContainer"
-        app:backgroundTint="?attr/colorPrimaryContainer" />
+        android:text="@string/preset_add_fab_label"
+        app:icon="@drawable/ic_add"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

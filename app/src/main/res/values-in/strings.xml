@@ -118,6 +118,7 @@
     <string name="presets_empty_title">Belum ada prasetel</string>
     <string name="presets_empty_subtitle">Ketuk tombol + untuk menambahkan prasetel resolusi pertama Anda.</string>
     <string name="preset_add_fab_content_description">Tambah prasetel</string>
+    <string name="preset_add_fab_label">Tambah prasetel</string>
     <string name="preset_overflow_content_description">Opsi lainnya</string>
     <string name="preset_details_format">%1$d \u00d7 %2$d \u00b7 %3$d dpi</string>
 
